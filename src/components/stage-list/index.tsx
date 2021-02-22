@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IStage } from "../../types/stage";
 import Stage from "../stage";
 import styles from "./stage-list.module.scss";
@@ -11,6 +11,17 @@ const StageList = ({ currentSecond }: IStageListProps): JSX.Element => {
   const [stages, setStages] = useState<IStage[]>([]);
   const [stageName, setStageName] = useState<string>("");
   const [stageStart, setStageStart] = useState<number>(0);
+
+  useEffect(() => {
+    const savedStages = localStorage.getItem("stages");
+    if (savedStages) {
+      setStages(JSON.parse(savedStages));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("stages", JSON.stringify(stages));
+  }, [stages]);
 
   const resetInputs = () => {
     setStageName("");
