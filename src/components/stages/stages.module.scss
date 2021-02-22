@@ -9,25 +9,10 @@
   position: relative;
 }
 
-.stage {
-  display: flex;
-  font-size: 2rem;
-  color: $grey;
-}
-
-.activeStageBullet {
-  margin-right: 0.5rem;
-  color: $yellow;
-}
-
 .addStageWrapper {
   display: flex;
   align-items: center;
   margin-top: 0.5rem;
-}
-
-.stageActive {
-  color: $white;
 }
 
 .stageName {

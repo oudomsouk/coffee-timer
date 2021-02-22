@@ -1,17 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { IStage } from "../../types/stage";
+import Stage from "../stage";
 import styles from "./stages.module.scss";
 
-interface Stage {
-  name: string;
-  time: number;
-}
-
-interface StagesProps {
+interface IStagesProps {
   currentSecond: number;
 }
 
-const Stages = ({ currentSecond }: StagesProps): JSX.Element => {
-  const [stages, setStages] = useState<Stage[]>([{ name: "default", time: 0 }]);
+const Stages = ({ currentSecond }: IStagesProps): JSX.Element => {
+  const [stages, setStages] = useState<IStage[]>([]);
   const [stageName, setStageName] = useState<string>("");
   const [stageStart, setStageStart] = useState<number>(0);
 
@@ -31,21 +28,23 @@ const Stages = ({ currentSecond }: StagesProps): JSX.Element => {
     }
   };
 
-  const isStageActive = (stage: Stage) => stage.time <= currentSecond;
+  const handleDelete = (toDelete: IStage) => {
+    setStages((prev) => prev.filter((stage) => stage.name !== toDelete.name));
+  };
+
+  const isStageActive = (stage: IStage, nextIndex?: number): boolean =>
+    stage.time <= currentSecond &&
+    (nextIndex && stages[nextIndex] ? !isStageActive(stages[nextIndex]) : true);
 
   return (
     <div className={styles.wrapper}>
-      {stages.map((stage) => (
-        <div
-          className={`${styles.stage} ${
-            isStageActive(stage) ? styles.stageActive : ""
-          }`}
-        >
-          {isStageActive(stage) && (
-            <div className={styles.activeStageBullet}>•</div>
-          )}{" "}
-          {stage.name} {stage.time ? `@ ${stage.time}s` : ""}
-        </div>
+      {stages.map((stage, index) => (
+        <Stage
+          key={stage.name}
+          stage={stage}
+          isActive={isStageActive(stage, index + 1)}
+          onDelete={() => handleDelete(stage)}
+        />
       ))}
       <div className={styles.addStageWrapper}>
         <div>

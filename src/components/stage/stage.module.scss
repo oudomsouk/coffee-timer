@@ -1,0 +1,35 @@
+@import "../../styles/colour.scss";
+
+.wrapper {
+  display: flex;
+  font-size: 2rem;
+  color: $grey;
+}
+
+.stageActive {
+  color: $white;
+}
+
+.activeStageBullet {
+  margin-right: 0.5rem;
+  color: $yellow;
+}
+
+.deleteButton {
+  border: none;
+  border-radius: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  position: relative;
+  background-color: transparent;
+  border: 2px solid $white;
+  color: $white;
+  margin-left: 1rem;
+  & > span {
+    position: absolute;
+    top: -0.2rem;
+    left: 0.5rem;
+    transform: rotate(45deg);
+  }
+}
