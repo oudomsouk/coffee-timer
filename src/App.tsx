@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Stages from "./components/stages";
+import StageList from "./components/stage-list";
 import Timer from "./components/timer";
 import styles from "./App.module.scss";
 
@@ -9,7 +9,7 @@ const App = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Timer seconds={seconds} setSeconds={setSeconds} />
-      <Stages currentSecond={seconds} />
+      <StageList currentSecond={seconds} />
     </div>
   );
 };

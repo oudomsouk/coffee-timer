@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { IStage } from "../../types/stage";
 import Stage from "../stage";
-import styles from "./stages.module.scss";
+import styles from "./stage-list.module.scss";
 
-interface IStagesProps {
+interface IStageListProps {
   currentSecond: number;
 }
 
-const Stages = ({ currentSecond }: IStagesProps): JSX.Element => {
+const StageList = ({ currentSecond }: IStageListProps): JSX.Element => {
   const [stages, setStages] = useState<IStage[]>([]);
   const [stageName, setStageName] = useState<string>("");
   const [stageStart, setStageStart] = useState<number>(0);
@@ -54,6 +54,7 @@ const Stages = ({ currentSecond }: IStagesProps): JSX.Element => {
             placeholder="stage"
             value={stageName}
             onChange={(event) => setStageName(event.target.value)}
+            aria-label="New stage name"
           />
           <input
             className={styles.stageTime}
@@ -63,12 +64,17 @@ const Stages = ({ currentSecond }: IStagesProps): JSX.Element => {
             onChange={(event) =>
               setStageStart(Number.parseInt(event.target.value))
             }
+            aria-label="New stage start time"
           />
         </div>
-        <button className={styles.addStageButton} onClick={handleAddStage} />
+        <button
+          className={styles.addStageButton}
+          onClick={handleAddStage}
+          aria-label="Add new stage"
+        />
       </div>
     </div>
   );
 };
 
-export default Stages;
+export default StageList;
