@@ -2,24 +2,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto;
-  width: max-content;
 }
 
 .timerLine {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
+  border: 0.125rem solid #a6a085;
+  border-radius: 100px;
+  width: 12rem;
+  height: 12rem;
+  margin-bottom: 2rem;
 }
 
 .count {
-  font-size: 10rem;
+  font-size: 8rem;
 }
 
 .seconds {
   font-size: 4rem;
 }
 
-.timerButton {
+.button {
   background-color: #8097a6;
   border: none;
   font-size: 1.5rem;
@@ -27,4 +31,5 @@
   letter-spacing: 0.125rem;
   padding: 0.5rem 1rem;
   text-transform: uppercase;
+  margin: 0 0.5rem;
 }
